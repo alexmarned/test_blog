@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <!-- Обязательные метатеги -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <title>menu</title>
+        <style type="text/css">
+            @media (min-width: 1120px) {
+                .container{
+                    max-width: 970px;
+                }
+            }
+
+            li.nav-item.dropdown:hover >div.dropdown-menu   {
+                display: block;
+                background: red;
+                font-family: Open Sans;
+                font-size: 1rem;
+            }
+
+            li.nav-item.dropdown >div.dropdown-menu > a.dropdown-item:after {
+                content: " +";
+            }
+
+            li.nav-item.dropdown >div.dropdown-menu > a.dropdown-item:hover:after {
+                content: none;
+                content: " -" !important;
+            }
+
+            .nav-fill .nav-item .nav-link, .nav-justified .nav-item .nav-link {
+                width: 85%;
+            }
+
+            /* style on button          */
+            .nav-fill .nav-item .nav-link:hover, .nav-justified .nav-item .nav-link:hover {
+                background: red;
+            }
+
+            body {
+                background: gold;
+                font-family: Open Sans;
+                font-size: 1rem;
+            }
+
+            #deliveri_nav_title {
+                min-height: 20vw;
+            }
+
+            div.row   img#block_image {
+                width: 400px;
+                height: 400px;
+                text-align: center;
+                opacity: 1;
+                overflow: hidden;
+            }
+
+            div#deliveri_nav_title.col-3 ul li {
+                list-style-type: none;
+            }
+
+            div#deliveri_nav_title.col-3 ul li:before {
+                content: "\2192";
+            }
+
+            .dop_image_text {
+                position: relative;
+                bottom: 0;
+                left: 0;
+                bottom:  10rem;
+                z-index: 20;
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-9">
+                    <ul class="nav nav-pills   nav-justified">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle  active " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Продукты</a>
+
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item"  href="#!" title="lorem ipsum">Дом</a>
+                                <a class="dropdown-item" href="#!" title="lorem ipsum">Электроника</a>
+                                <a class="dropdown-item" href="#!" title="lorem ipsum">Питомец</a>
+                                <a class="dropdown-item" href="#!" title="lorem ipsum">Книги</a>
+                                <a class="dropdown-item" href="#!" title="lorem ipsum">Бытовые товары</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#!">О компании</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" id="deliveri_nav"  href="#!">Доставка</a>
+                        </li>   
+                    </ul>
+                </div>    
+
+                <div class="col-3">
+                    <a class="nav-link active" href="#!" style="float: right; margin-right: 1rem;">Login</a>
+                </div>   
+            </div>
+
+            <div class="row">
+                <div class="col-6"></div>
+                <div class="col-3" id="deliveri_nav_title"></div>
+                <div class="col-3"></div>  
+            </div>  
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h4 class="card-title">Card title</h4>
+                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                            <p class="card-text">
+                                Some quick example text to build on the card title
+                                and make up the bulk of the card's content.
+                            </p>
+
+                            <a href="http://alexmarned.zzz.com.ua">  <button type="button" class="btn btn-success" >Card link</button></a>
+                        </div>
+                    </div>    
+                </div>
+
+                <div class="col-6 text-center">  <img id="block_image" src="images\жанна-100x100.jpg">           
+                    <h2 class="dop_image_text">some_text</h2>
+                </div>     
+            </div>   
+        </div>
+
+        <script>
+            /* button width  */
+            var cart_width = document.querySelector('div.card-body').scrollWidth;
+            var button_width = cart_width / 2 + 'px';
+            document.querySelector('div.card-body a button.btn.btn-success').setAttribute('style', 'width:' + button_width);         /*end button width  */
+
+            /* sdd content to nav button 'delivery'  */
+            var deliveri_nav = document.querySelector('a#deliveri_nav.nav-link.active');
+            var deliveri_title = document.getElementById('deliveri_nav_title');
+
+            function add_deliveri_content_hover() {
+                deliveri_title.innerHTML = 'text <br> text <br>' + '<ul><li>list</li><li>list</li><li>list</li><li>list</li></ul>';
+            }
+
+            // add_deliveri_content();
+            deliveri_nav.addEventListener("mouseover", add_deliveri_content_hover);
+
+            /*  // можно добавить скрытие текста при mouseout
+             function add_deliveri_content_out() {
+             deliveri_title.innerHTML = '';
+             } 
+             deliveri_nav.addEventListener("mouseout", add_deliveri_content_out);*/
+            /* end sdd content to nav button 'delivery'  */
+
+            /* click image  */
+            var image_filter = document.querySelector('img#block_image');
+            ;
+            function image_add_filter() {
+                if (window.getComputedStyle(image_filter).getPropertyValue("opacity") == 1) {
+                    image_filter.setAttribute('style', 'opacity: 0.4');
+                    document.querySelector('h2.dop_image_text').setAttribute('style', 'display: inline');
+                } else {
+                    image_filter.setAttribute('style', 'opacity: 1');
+                    document.querySelector('h2.dop_image_text').setAttribute('style', 'display: none');
+                }
+            }
+
+            image_filter.addEventListener('click', image_add_filter);
+            /* click image  */
+        </script>
+
+        <!-- Дополнительный JavaScript; выберите один из двух! -->
+
+        <!-- Вариант 1: Bootstrap в связке с Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous" ></script>
+    </body>
+</html>
